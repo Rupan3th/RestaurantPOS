@@ -1,0 +1,29 @@
+import React from 'react'
+import {
+    View,
+} from 'react-native'
+
+import AppbarNavigation from '../../components/appbar'
+
+class RegisterView extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+
+    }
+
+    UNSAFE_componentWillMount() {
+
+    }
+
+    render() {
+        return (
+            <View style={{backgroundColor : 'red'}}>
+            </View>
+        )
+    }
+}
+
+export default RegisterView

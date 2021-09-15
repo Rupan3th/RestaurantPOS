@@ -1,0 +1,7 @@
+
+export default {
+    base : "https://aws-gpu3.xcellence.tech/vr_api/",
+    register : base + "auth/register",
+    login : base + "auth/login",
+
+}

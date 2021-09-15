@@ -1,0 +1,7 @@
+import RNFetchBlob from 'rn-fetch-blob'
+
+export function upload(api, files) {
+    return RNFetchBlob.fetch('POST', api, {
+        'Content-Type' : 'multipart/form-data'
+    }, files)
+}

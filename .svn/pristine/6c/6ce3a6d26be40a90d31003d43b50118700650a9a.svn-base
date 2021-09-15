@@ -1,0 +1,27 @@
+import * as Service from '../service'
+import API from '../value/restapi'
+import { Platform } from 'react-native'
+import RNFetchBlob from 'rn-fetch-blob'
+
+export function voice_authenentication(audio) {
+    let files = [
+        {
+            name: 'file',
+            filename: audio.name,
+            data: RNFetchBlob.wrap(Platform.OS == 'ios'? audio.path: "file://" + audio.path)
+        }
+    ]
+    return Service.upload(API.bio_voice, files)
+}
+
+export function face_authentication(image) {
+    let files = [
+        {
+            name: 'file',
+            filename: image.name,
+            data: RNFetchBlob.wrap(Platform.OS == 'ios'? image.path: "file://" + image.path)
+        }
+    ]
+
+    return Service.upload(API.bio_image, files)
+}

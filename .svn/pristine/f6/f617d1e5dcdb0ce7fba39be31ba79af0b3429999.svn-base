@@ -1,0 +1,27 @@
+var _token = "";
+export function getToken() {
+    return _token;
+}
+
+export function setToken(token) {
+    console.log("++++++++++++set");
+    _token = token;
+    storeData("MyToken", token);
+}
+
+export async function storeData(key, value) {
+    try {
+        await AsyncStorage.setItem(key, value);
+    } catch (error) {
+        console.log('Saving data "%s" is failed.', key);
+    }
+}
+
+var _transcript = undefined;
+export function getTranscript() {
+    return _transcript;
+}
+
+export function setTranscript(transcript) {    
+    _transcript = transcript;
+}

@@ -1,0 +1,76 @@
+import { Dimensions } from 'react-native';
+import _ from 'lodash';
+
+export const dimensionsWidth = Dimensions.get('window').width;
+export const dimensionsHeight = Dimensions.get('window').height;
+
+export function convertByte2Short(byteA, byteB) {
+    var sign = byteA & (1 << 7);
+    var x = (((byteA & 0xFF) << 8) | (byteB & 0xFF));
+    if (sign) {
+        result = 0xFFFF0000 | x;  // fill in most significant bits with 1's
+        return result
+    }
+    return x
+}
+
+
+export function convertByteArray2ShortArray(byteArray) {
+    let chunks = _.chunk(byteArray, 2);
+    
+    let shorts = chunks.map((chunk, i) => (
+        convertByte2Short(chunk[0], chunk[1])
+    ))
+
+    return shorts
+}
+
+export function convertByteArray2FloatArray(byteArray) {
+    let cnt = byteArray.length
+
+    
+    let chunks = _.chunk(byteArray, 2);
+    
+    let floats = chunks.map((chunk, i) => (
+        convertByte2Short(chunk[0], chunk[1]) / 65536.0
+    ))
+
+    return floats
+}
+
+
+//Date 
+
+const MONTHS = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+]
+
+const DAYS = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+]
+
+export function currentTimeWithDMDY() {
+    let currentDate = new Date()
+    let day = currentDate.getDay()
+    let month = currentDate.getMonth()
+    let date = currentDate.getDate()
+    let year = currentDate.getFullYear()
+    return `${DAYS[day]}, ${MONTHS[month]} ${date}, ${year}`
+}
